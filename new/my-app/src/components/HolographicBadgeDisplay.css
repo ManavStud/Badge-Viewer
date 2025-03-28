@@ -1,0 +1,509 @@
+/* HolographicBadgeDisplay.css - Modified Version */
+.badge-view-page {
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: #000a2c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Main content area */
+  .badge-main-content {
+    display: flex;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: calc(100vh - 150px); /* Adjust for navbar and badge collection */
+    overflow: hidden;
+  }
+  
+  /* Left Column */
+  .badge-left-column {
+    flex: 1;
+    padding: 20px 20px 20px 0;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+  
+  .badge-title {
+    font-size: 2.5rem;
+    color: #00d4ff;
+    margin: 0 0 10px 0;
+    border-bottom: 3px solid #00d4ff;
+    padding-bottom: 5px;
+    width: fit-content;
+  }
+  
+  .difficulty-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-weight: 500;
+    margin: 8px 0 15px 0;
+    min-width: auto;
+    max-width: 150px;
+    text-align: center;
+  }
+  
+  .badge-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px; /* Reduced margin */
+    opacity: 0.9;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+    color: #00d4ff;
+    margin: 15px 0 10px 0; /* Reduced margins */
+    border-bottom: 2px solid #00d4ff;
+    padding-bottom: 5px;
+    width: fit-content;
+  }
+  
+  /* Skills Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; /* Reduced gap */
+    margin-bottom: 20px; /* Reduced margin */
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 8px 12px; /* Reduced padding */
+  }
+  
+  .icon-small {
+    width: 20px;
+    height: 20px;
+    color: #00d4ff;
+  }
+  
+  .badge-detailed-description {
+    background: rgba(0, 212, 255, 0.1);
+    border-left: 3px solid #00d4ff;
+    padding: 12px; /* Reduced padding */
+    margin-bottom: 20px; /* Reduced margin */
+    line-height: 1.6;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  /* Center Column */
+  .badge-center-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed to flex-start */
+    position: relative;
+    padding-top: 20px; /* Add padding at top */
+  }
+  
+  .hologram-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0;
+  }
+  
+  .badge-hologram {
+    position: relative;  /* Make sure it's relative for positioning */
+    margin-bottom: 0;
+    padding-bottom: 0;
+    height: 250px;  /* Slightly smaller to make room for rings */
+  }
+  
+  
+  .badge-hologram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 50px 10px rgba(0, 212, 255, 0.3);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  .badge-hologram::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.1) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+  }
+  
+  .badge-image {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    z-index: 1;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
+  }
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00d4ff;
+    animation: spin 1s linear infinite;
+  }
+  
+  .nav-button {
+    background: rgba(0, 212, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    margin: 0 15px;
+    z-index: 5;
+  }
+  
+  .nav-button:hover {
+    background: rgba(0, 212, 255, 0.4);
+    transform: scale(1.1);
+  }
+  
+  /* Position hologram base directly under image */
+  .hologram-base {
+    position: absolute;  /* Changed to absolute positioning */
+    width: 250px;
+    height: 40px;
+    bottom: -40px;  /* Position it at the bottom of the badge hologram */
+    left: 50%;
+    transform: translateX(-50%);  /* Center it horizontally */
+    z-index: 2;
+  }
+  
+  .base-ring {
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    border: none;
+    background-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  }
+  
+  .ring1 {
+    width: 180px;
+    bottom: 0;
+    animation: glow1 2s infinite;
+  }
+  
+  .ring2 {
+    width: 140px;
+    bottom: 10px;
+    animation: glow2 2s infinite;
+  }
+  
+  .ring3 {
+    width: 100px;
+    bottom: 20px;
+    animation: glow3 2s infinite;
+  }
+  
+  /* Move info boxes up and away from collection */
+  .badge-info-boxes {
+    display: flex;
+    gap: 10px; /* Reduced gap */
+    margin-top: 10px;
+    margin-bottom: 30px; /* Added margin to create space */
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .info-box {
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 5px;
+    padding: 8px 15px; /* Reduced padding */
+    text-align: center;
+    flex: 1;
+    max-width: 130px; /* Reduced width */
+  }
+  
+  .info-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 5px;
+  }
+  
+  .info-value {
+    font-weight: bold;
+    color: #00d4ff;
+  }
+  
+  /* Right Column */
+  .badge-right-column {
+    flex: 1;
+    padding: 20px 0 20px 20px;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+  
+  .badge-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px; /* Reduced margin */
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 5px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .action-button:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .get-badge {
+    background: rgba(0, 212, 255, 0.2);
+  }
+  
+  .action-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .share-success {
+    background: rgba(0, 212, 255, 0.2);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    animation: fadeIn 0.3s;
+  }
+  
+  .related-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; /* Reduced gap */
+    margin-top: 15px; /* Reduced margin */
+  }
+  
+  .related-badge {
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 5px;
+    padding: 8px 5px; /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .related-badge:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-3px);
+  }
+  
+  .related-badge img {
+    width: 60px; /* Reduced size */
+    height: 60px; /* Reduced size */
+    object-fit: contain;
+    margin-bottom: 5px; /* Reduced margin */
+  }
+  
+  .related-badge span {
+    text-align: center;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  
+  /* Badge Collection - fixed at bottom with higher z-index */
+  .badge-collection {
+    background-color: rgba(0, 10, 44, 0.95); /* More opaque */
+    padding: 5px 20px;
+    border-top: 1px solid rgba(0, 212, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: auto;
+    max-height: 80px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3); /* Added shadow */
+  }
+  
+  .collection-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px; /* Reduced margin */
+  }
+  
+  .badge-counter {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .badge-thumbnails {
+    display: flex;
+    gap: 8px; /* Reduced gap */
+    overflow-x: auto;
+    padding-bottom: 5px; /* Reduced padding */
+    justify-content: center;
+  }
+  
+  .badge-thumbnail {
+    width: 45px; /* Reduced size */
+    height: 45px; /* Reduced size */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  
+  .badge-thumbnail img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+  }
+  
+  .badge-thumbnail.active {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .badge-thumbnail:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Loading state */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  }
+  
+  /* Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes glow1 {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+  }
+  
+  @keyframes glow2 {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+  
+  @keyframes glow3 {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 1200px) {
+    .badge-main-content {
+      flex-direction: column;
+    }
+    
+    .badge-center-column {
+      order: 1;
+      margin: 0;
+      padding: 10px 0;
+    }
+    
+    .badge-left-column {
+      order: 2;
+      padding: 10px 0;
+    }
+    
+    .badge-right-column {
+      order: 3;
+      padding: 10px 0;
+    }
+    
+    .skills-grid,
+    .related-badges {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .skills-grid,
+    .related-badges {
+      grid-template-columns: 1fr;
+    }
+    
+    .badge-info-boxes {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .info-box {
+      max-width: 80%;
+    }
+  }
