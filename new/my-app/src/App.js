@@ -9,6 +9,7 @@ import BadgeAdminPage from "./components/BadgeAdminPage";
 import AdminRoute from "./components/AdminRoute"; // Add this
 import HolographicBadgeDisplay from "./components/HolographicBadgeDisplay";
 import NewBadgeView from './components/NewBadgeView';
+import SharedBadgePage from "./components/SharedBadgePage";
 // Protected Route for Profile
 const ProtectedRoute = ({ children }) => {
   const username = localStorage.getItem("username");
@@ -25,6 +26,7 @@ function App() {
         <Route path="/badges" element={<AllBadgesPage />} />
         <Route path="/badge-view/:id?" element={<HolographicBadgeDisplay />} />
         <Route path="/new-badge/:id?" element={<NewBadgeView />} />
+        <Route path="/badge/shared/:id/:username/:timestamp" element={<SharedBadgePage />} />
         <Route 
           path="/profile/:username" 
           element={

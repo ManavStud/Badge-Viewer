@@ -244,6 +244,26 @@ app.post("/assign-badge", async (req, res) => {
   }
 });
 
+// Add this to server.js to provide more detailed badge information when requested
+app.get("/badge/:id", async (req, res) => {
+  try {
+    const badge = await Badge.findOne({ id: parseInt(req.params.id) });
+    
+    if (!badge) {
+      return res.status(404).json({ message: "Badge not found" });
+    }
+    
+    // You could enhance this with additional information from other collections
+    // For example, add issuer information, criteria, etc.
+    
+    // For now, we'll just return the badge data
+    res.json(badge);
+  } catch (error) {
+    console.error("Error fetching badge:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 // Add an endpoint to check admin status
 app.get("/check-admin", async (req, res) => {
   try {

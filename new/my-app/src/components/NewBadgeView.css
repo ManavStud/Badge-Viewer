@@ -168,7 +168,8 @@
   width: 250px;
   height: 250px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 40px;
   justify-content: center;
   position: relative;
   animation: float 4s infinite ease-in-out;
@@ -179,6 +180,7 @@
   max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
+  margin-top: 2px;
 }
 
 .scan-line {
