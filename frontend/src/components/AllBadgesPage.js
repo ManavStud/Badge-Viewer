@@ -158,7 +158,7 @@ const AllBadgesPage = () => {
     let result = badges;
     
     // Category filter
-    if (filter !== "all") {
+    if (filter !== "all" && filter !== "my-badges") {
       result = result.filter(badge => 
         badge.level && badge.level.toLowerCase() === filter.toLowerCase()
       );
@@ -173,6 +173,13 @@ const AllBadgesPage = () => {
 
     // Filter by selected difficulty courses
     if (selectedcourses !== "all") {
+      result = result.filter(badge => 
+        badge.level && badge.level.toLowerCase() === selectedcourses.toLowerCase()
+      );
+    }
+
+    // Filter by selected difficulty courses
+    if (filter === "my-badges") {
       result = result.filter(badge => 
         badge.level && badge.level.toLowerCase() === selectedcourses.toLowerCase()
       );
@@ -241,33 +248,27 @@ const AllBadgesPage = () => {
       <Navbar />
       
       <div className="badges-container">
+    <div >
         <h1 className="page-title">Cybersecurity Badges</h1>
         <p className="page-subtitle">
           Complete challenges and earn badges to showcase your cybersecurity skills
         </p>
+    </div>
 
           <div className="badges-filter">
             
-            <span></span>
             <div className="filter-buttons">
-
-
               <button 
                 className={`filter-button1 ${filter === 'all' ? 'active' : ''}`}
                 onClick={() => setFilter('all')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-grid-fill" viewBox="0 0 16 16">
-                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z" />
-                </svg>
+              All
               </button>
-
               <button 
-                className={`filter-button2 ${filter === '' ? 'active' : ''}`}
-                onClick={() => navigate("/holo")}
+                className={`filter-button2 ${filter === 'my-badges' ? 'active' : ''}`}
+                onClick={() => setFilter('my-badges')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-file-text-fill" viewBox="0 0 16 16">
-                  <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1" />
-                </svg>
+            earned
               </button>
 
 

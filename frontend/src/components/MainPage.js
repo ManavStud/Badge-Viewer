@@ -17,7 +17,7 @@ import img7 from "./img7.png";
 import img8 from "./img8.png";
 
 // Import the particle effect
-import { initParticles } from "./effects/particleEffect";
+// import { initParticles } from "./effects/particleEffect";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const MainPage = () => {
   
   useEffect(() => {
     // Initialize particles
-    initParticles();
+    // initParticles();
     
     // Check if user is logged in
     const storedUsername = localStorage.getItem("username");
